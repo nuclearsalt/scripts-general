@@ -1,0 +1,16 @@
+#!/bin/bash -x
+
+cd ~/Downloads
+curl -O https://dl.google.com/chrome/mac/stable/CHFA/googlechrome.dmg
+open ~/Downloads/googlechrome.dmg
+set timeout 120
+#Suggestion from StackOverflow. Use a while loop and the brackets to verify the existence of the directory
+
+while ! [[ -d /Volumes/Google\ Chrome/ ]] ; do
+        sleep 1
+done
+
+cp -R /Volumes/Google\ Chrome/Google\ Chrome.app /Applications && open /Applications/Google\ Chrome.app
+diskutil eject Google\ Chrome
+
+

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cd ~/Downloads
+
+DVLC="curl -O https://mirror.clarkson.edu/videolan/vlc/3.0.3/macosx/vlc-3.0.3.dmg"
+
+if $DVLC ; then
+	:
+else	
+	open https://www.videolan.org/vlc/download-macosx.html
+	exit 1
+fi
+
+open ~/Downloads/vlc*
+
+while [[ ! -d /Volumes/VLC\ media\ player/ ]] ; do
+	sleep 1
+done
+
+cp -R /Volumes/VLC\ media\ player/VLC.app /Applications/ && diskutil eject /Volumes/VLC\ media\ player 
+
+# apparently you can use rsync --progress to copy the files over and show a 
+# progress bar, but it skips /Volumes/VLC\ media\ player
+# would like to use that so I'll figure that out next time maybe
+
+open /Applications/VLC.app

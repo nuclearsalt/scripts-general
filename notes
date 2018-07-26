@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#Interactive note taking script
+
+#Declare variable to add to prompt
+time=$(date +"%H:%M:%S")
+
+#ask user for input
+read -p "Enter some text here: " note
+
+#output new text file with name specified at prompt
+topic=$*
+
+#declare variable for filename
+filename=~/${topic}notes.txt
+
+#pipe the text that was written into a file
+if [[ $note ]] ; then
+	echo $time: $note >> "$filename"
+	echo Here\'s what you wrote: $note
+else
+	echo "You didn't type anything."
+fi
+
+#open the file the text has been written to
+#cat ~/notes.txt

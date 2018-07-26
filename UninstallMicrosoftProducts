@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+### This script should be run with sudo, since we are moving items from the root level library.
+
+echo "This script will remove most/all Microsoft Products from your machine."
+echo "Please enter your password: "
+
+# Move Microsoft products to the trash
+
+sudo mv -v /Applications/Microsoft\ * ~/.Trash
+sudo mv -v /Applications/Remote\ Desktop\ Connection ~/.Trash
+
+# Move files from user library to trash
+
+mv -v ~/Library/Containers/com.microsoft.* ~/.Trash
+
+# Move more files from user library to trash
+
+mv -v ~/Library/Group\ Containers/UBF8T346G9.* ~/.Trash
+
+Echo "Done."

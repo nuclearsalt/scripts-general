@@ -1,0 +1,11 @@
+#!/bin/bash
+
+open -a Google\ Chrome.app https://app.pluralsight.com/library/
+Echo "Opened Pluralsight"
+open -a Google\ Chrome.app https://trello.com/b/f8n6RhR3/tech-board 
+echo "Opened Trello"
+open -a Evernote.app
+Echo "Opened Evernote"
+open -a Sublime\ Text.app
+Echo "Opened Sublime Text"
+Echo Now\,\ get to learnin\'\!

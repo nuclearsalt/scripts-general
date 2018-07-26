@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#creates script, sets permissions, etc
+
+#Is there an argument?
+
+if [[ ! $1 ]]; then
+	echo "Missing argument"
+	exit1
+fi
+
+
+#declare ~/bin as directory
+#here, we're going to use ${HOME} instead of ~
+
+scriptname="$1"
+bindir="${HOME}/Dropbox/bin"
+filename="${bindir}/${scriptname}"
+
+
+#using an if statement to check to see if the filename already exists
+
+if [[ -e $filename ]] ; then
+	echo "File ${filename} already exists"
+	exit 1
+fi
+
+#checking to see now if there is already a command with the given name
+
+if type "$scriptname"; then
+	echo "This command already exists"
+	exit 1
+fi
+
+
+#check if bin directory exists. if not, create bindir
+if [[ ! -d $bindir ]] ; then
+	if mkdir "$bindir"; then
+		echo "Created ${bindir}"
+	else
+		echo "${bindir} already exists"
+		exit 1
+	fi
+fi
+
+
+#create script, add exec permission, open with editor
+
+echo "#!/bin/bash" > "$filename"
+chmod 744 "$filename"
+
+if [[ $EDITOR ]] ; then 
+	$EDITOR "$filename"
+else
+	echo "Script has been created, but could not open in \$EDITOR because \$EDITOR is not defined"
+fi
+
