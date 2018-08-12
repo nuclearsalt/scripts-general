@@ -3,13 +3,8 @@
 appName="$*"
 echo="Installing $appName"
 
-all="$ichrome $ivlc $izoom" 
 
-ichrome="[[ $appName = "Chrome" || $appName = "chrome" ]]"
-ivlc="[[ $appName = "VLC" || $appName = "vlc" ]]"
-izoom="[[ $appName = "Zoom" || $appName = "zoom" ]]"
-
-if $ichrome ; then
+if [[ $appName = "Chrome" || $appName = "chrome" ]] ; then
 
     #### Chrome ####
 
@@ -35,13 +30,12 @@ if $ichrome ; then
     Echo Chrome Installed
 #    exit 0
 
-elif $ivlc ; then
+elif [[ $appName = "VLC" || $appName = "vlc" ]]; then
 
     #### VLC ####
 
     cd ~/Downloads
 
-    echo "Downloading VLC Media Player"
     DVLC="curl -O https://mirror.clarkson.edu/videolan/vlc/3.0.3/macosx/vlc-3.0.3.dmg"
 
     if $DVLC ; then
@@ -65,11 +59,10 @@ elif $ivlc ; then
 # would like to use that so I'll figure that out next time maybe
 
     open /Applications/VLC.app
-    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/VLC.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
     echo VLC Installed
  #   exit 0
 
-elif $izoom ; then
+elif [[ $appName = "Zoom" || $appName = "zoom" ]]; then
 
     #### Zoom ####
 
